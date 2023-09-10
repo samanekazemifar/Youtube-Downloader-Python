@@ -1,0 +1,24 @@
+from pytube import YouTube
+
+# Input: Get the YouTube video URL
+video_url = input("Enter the YouTube video URL: ")
+yt = YouTube(video_url)
+
+# Display available streams to choose from
+print("Available streams:")
+for stream in yt.streams:
+    print(stream)
+
+# Input: Get the desired stream by its itag
+itag = input("Enter the itag of the desired stream: ")
+stream = yt.streams.get_by_itag(itag)
+
+# Input: Choose the download location
+download_path = input("Enter the download path: ")
+
+# Download the selected stream
+if stream:
+    stream.download(output_path=download_path)
+    print("Download completed.")
+else:
+    print("Stream not found.")
